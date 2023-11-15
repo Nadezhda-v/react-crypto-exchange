@@ -1,0 +1,23 @@
+.main {
+  padding: 30px 0;
+  height: 100vh;
+  background-image: url('./img/main.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom left;
+}
+
+.noBackground {
+  background-image: none;
+}
+
+.noBackground::before {
+  display: none;
+}
+
+@media (max-width: 850px) {
+  .main {
+    background-image: none;
+    background-color: #0B0B0F;
+  }
+}

@@ -1,0 +1,104 @@
+@import "~normalize.css";
+
+@font-face {
+  font-family: "Comfortaa";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""),
+    url("fonts/comfortaa-cyrillic-700.woff2")
+      format("woff2"),
+    url("fonts/comfortaa-cyrillic-700.woff")
+      format('woff');
+}
+
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""),
+    url("fonts/nunito-cyrillic-regular.woff2")
+      format("woff2"),
+    url("fonts/nunito-cyrillic-regular.woff")
+      format("woff"),
+}
+
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  src: local(""),
+    url("fonts/nunito-cyrillic-600.woff2")
+      format("woff2"),
+    url("fonts/nunito-cyrillic-600.woff")
+      format("woff"),
+}
+
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""),
+    url("fonts/nunito-cyrillic-700.woff2")
+      format("woff2"),
+    url("fonts/nunito-cyrillic-700.woff")
+      format("woff"),
+}
+
+:root {
+  --black: #000;
+  --white: #fff;
+  --blue: #18C8FF;
+  --violet: #933FFE;
+}
+
+html {
+  position: relative;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: Nunito, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  padding: 0;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+p,
+figure,
+fieldset {
+  margin: 0;
+}

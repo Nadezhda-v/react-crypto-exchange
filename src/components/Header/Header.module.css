@@ -1,0 +1,14 @@
+.header {
+  padding: 15px 0;
+  background-color: #515151;
+}
+
+.сontainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.right {
+  display: flex;
+  gap: 40px;
+}
