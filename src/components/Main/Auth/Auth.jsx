@@ -1,6 +1,10 @@
 import style from './Auth.module.css';
 import { useForm } from 'react-hook-form';
 import { ReactComponent as LogoIcon } from '../../Header/Logo/img/logo.svg';
+import { authRequestAsync } from '../../../store/auth/authAction';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const Auth = () => {
   const {
@@ -9,13 +13,24 @@ export const Auth = () => {
     formState: { errors },
   } = useForm();
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const token = useSelector((state) => state.token.token);
+  const dataAuth = useSelector((state) => state.auth.data);
+
   const handleInput = (e) => {
     e.target.value = e.target.value.replace(/[^A-Za-z]/g, '');
   };
 
   const onSubmit = (data) => {
-    console.log('data: ', data);
+    dispatch(authRequestAsync(data));
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate('/crypto');
+    }
+  }, [token]);
 
   return (
     <div className={style.container}>
@@ -73,6 +88,11 @@ export const Auth = () => {
           <button className={style.submit} type='submit'>
             Войти
           </button>
+          {dataAuth.error &&
+            <span className={style.errorSubmit}>
+              Неверный логин или пароль
+            </span>
+          }
         </form>
       </div>
     </div>

@@ -1,4 +1,3 @@
-// import Header from '../Header';
 import style from './Layout.module.css';
 import PropTypes from 'prop-types';
 

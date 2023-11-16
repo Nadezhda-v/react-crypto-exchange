@@ -45,10 +45,15 @@
 }
 
 :root {
-  --black: #000;
+  --black: #0B0B0F;
   --white: #fff;
   --blue: #18C8FF;
   --violet: #933FFE;
+  --dark-violet: #27153d;
+  --yellow: #C2FF00;
+  --pink: #FF29C3;
+  --gray: #8f8f8f;
+  --burgundy: #5a105b;
 }
 
 html {

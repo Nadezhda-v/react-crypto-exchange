@@ -8,7 +8,7 @@
   background: var(--header);
   border-radius: 10px;
   display: flex;
-  height: 466px;
+  height: 480px;
   justify-content: center;
   padding: 50px 0;
   width: 390px;
@@ -51,6 +51,12 @@
   font-size: 14px;
   position: absolute;
   right: 10px;
+}
+
+.errorSubmit {
+  color: red;
+  font-size: 14px;
+  padding-top: 10px;
 }
 
 .inputWrapper:not(:last-of-type) {

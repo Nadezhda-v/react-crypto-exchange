@@ -7,17 +7,14 @@
   background-position: bottom left;
 }
 
-.noBackground {
+.noBackgroundImage {
   background-image: none;
-}
-
-.noBackground::before {
-  display: none;
+  background: linear-gradient(to bottom, #27153d 0%, #0B0B0F 100%);
 }
 
 @media (max-width: 850px) {
   .main {
     background-image: none;
-    background-color: #0B0B0F;
+    background: linear-gradient(to bottom, #27153d 0%, #0B0B0F 100%);
   }
 }
