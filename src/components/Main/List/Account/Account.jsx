@@ -11,7 +11,11 @@ export const Account = ({ accountData }) => {
     transactions,
   } = accountData;
 
-  const { date: dateTransaction } = transactions[0];
+  let dateTransaction = null;
+
+  if (transactions[0]) {
+    dateTransaction = transactions[0].date;
+  }
 
   return (
     <li className={style.card}>
@@ -20,7 +24,7 @@ export const Account = ({ accountData }) => {
 
       <div className={style.info}>
         {dateOpen && <Open date={dateOpen} />}
-        <Transaction date={dateTransaction} />
+        {dateTransaction && <Transaction date={dateTransaction} />}
       </div>
     </li>
   );

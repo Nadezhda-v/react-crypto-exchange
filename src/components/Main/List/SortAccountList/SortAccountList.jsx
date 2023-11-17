@@ -40,8 +40,6 @@ export const SortAccountList = ({ accounts, sortOrder }) => {
           getLastTransactionDate(a),
           getLastTransactionDate(b)
         );
-      default:
-        return 0;
     }
   });
 

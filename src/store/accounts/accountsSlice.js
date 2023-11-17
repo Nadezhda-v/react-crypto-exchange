@@ -8,9 +8,13 @@ const initialState = {
 };
 
 export const accountsSlice = createSlice({
-  name: 'posts',
+  name: 'accounts',
   initialState,
-  reducers: {},
+  reducers: {
+    addAccount: (state, action) => {
+      state.data.push(action.payload);
+    },
+  },
   extraReducers: {
     [accountsRequestAsync.pending.type]: (state) => {
       state.loading = true;

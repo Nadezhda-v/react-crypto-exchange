@@ -4,6 +4,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { accountsReducer } from './accounts/accountsSlice';
 import { authReducer } from './auth/authReducer';
+import { createAccountReducer } from './createAccount/createAccountSlice';
 import {
   FLUSH,
   REHYDRATE,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   token: tokenReducer,
   auth: authReducer,
   accounts: accountsReducer,
+  createAccount: createAccountReducer,
 });
 
 const persistConfig = {

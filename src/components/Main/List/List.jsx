@@ -3,11 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { accountsRequestAsync } from '../../../store/accounts/accountsAction';
 import SortAccountList from './SortAccountList';
+import { accountsSlice } from '../../../store/accounts/accountsSlice';
+import {
+  createAccountSlice,
+} from '../../../store/createAccount/createAccountSlice';
+import {
+  createAccountRequestAsync,
+} from '../../../store/createAccount/createAccountAction';
 
 export const List = () => {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token.token);
   const accounts = useSelector((state) => state.accounts.data);
+  const newAccount = useSelector((state) => state.createAccount.data);
   const [sortOrder, setSortOrder] = useState('account');
 
   useEffect(() => {
@@ -16,8 +24,19 @@ export const List = () => {
     }
   }, [token]);
 
+  useEffect(() => {
+    if (newAccount && 'account' in newAccount) {
+      dispatch(accountsSlice.actions.addAccount(newAccount));
+      dispatch(createAccountSlice.actions.clearAccount());
+    }
+  }, [newAccount]);
+
   const handleSortChange = (e) => {
     setSortOrder(e.target.value);
+  };
+
+  const handleCreateAccount = () => {
+    dispatch(createAccountRequestAsync());
   };
 
   return (
@@ -25,6 +44,7 @@ export const List = () => {
       <div className={style.buttonWrapper}>
         <button
           className={style.button}
+          onClick={handleCreateAccount}
         >
           Новый счет
         </button>
