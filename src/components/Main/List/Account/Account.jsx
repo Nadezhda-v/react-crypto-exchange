@@ -2,6 +2,7 @@ import style from './Account.module.css';
 import PropTypes from 'prop-types';
 import Transaction from './Transaction';
 import Open from './Open';
+import { Link } from 'react-router-dom';
 
 export const Account = ({ accountData }) => {
   const {
@@ -19,13 +20,18 @@ export const Account = ({ accountData }) => {
 
   return (
     <li className={style.card}>
-      <p className={style.id}>{id}</p>
-      <p className={style.balance}>{balance}</p>
+      <Link
+        className={style.linkPhoto}
+        to={`/crypto/account/${id}`}
+      >
+        <p className={style.id}>{id}</p>
+        <p className={style.balance}>{balance}</p>
 
-      <div className={style.info}>
-        {dateOpen && <Open date={dateOpen} />}
-        {dateTransaction && <Transaction date={dateTransaction} />}
-      </div>
+        <div className={style.info}>
+          {dateOpen && <Open date={dateOpen} />}
+          {dateTransaction && <Transaction date={dateTransaction} />}
+        </div>
+      </Link>
     </li>
   );
 };

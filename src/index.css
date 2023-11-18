@@ -54,6 +54,8 @@
   --pink: #FF29C3;
   --gray: #8f8f8f;
   --burgundy: #5a105b;
+  --account: #321f33;
+  --green: #00FFA3;
 }
 
 html {
@@ -86,6 +88,7 @@ svg {
 button {
   padding: 0;
   cursor: pointer;
+  border: 0;
 }
 
 a {

@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-top: 15px;
+}
+
+.header {
+  display: flex;
+  flex-basis: 100%;
+  justify-content: space-between;
+  margin-bottom: 80px;
+}
+
+.button {
+  font-family: Nunito;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 15px 30px;
+  border-radius: 10px;
+  background: linear-gradient(225deg, #18C8FF 14.89%, #933FFE 85.85%);
+}
+
+.button:hover {
+  background: linear-gradient(88deg, #933FFE -14.85%, #18C8FF 50.2%, #933FFE 115.25%, #933FFE 115.25%)
+}
+
+.title {
+  font-family: Comfortaa;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 29px;
+}
+
+.svg {
+  margin-right: 8px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column-reverse;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  .title {
+    font-size: 14px;
+    align-self: center;
+  }
+
+  .titleWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .button {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
