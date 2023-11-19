@@ -1,24 +1,25 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import style from './Account.module.css';
 import { ReactComponent as BackIcon } from './img/back.svg';
-import Graphic from './Graphic';
+import Graph from './Graph';
 import Transactions from './Transactions';
 import Statistics from './Statistics';
 import Form from './Form';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { accountRequestAsync } from '../../../store/account/accountAction';
+import Preloader from '../../../UI/Preloader';
 
 export const Account = () => {
   const { id } = useParams();
-  console.log('id: ', id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const token = useSelector(state => state.token.token);
+  const loading = useSelector(state => state.account.loading);
   const { transactions } = useSelector((state) => state.account.data);
-  console.log('transactions: ', transactions);
 
   useEffect(() => {
-    dispatch(accountRequestAsync(id));
+    if (token) dispatch(accountRequestAsync(id));
   }, [id]);
 
   const handleBack = () => {
@@ -43,9 +44,14 @@ export const Account = () => {
         </div>
       </div>
 
-      <Graphic />
-      <Transactions transactions={transactions} id={id} />
-      <Statistics />
+      {loading || !transactions ?
+        <Preloader color='#FF29C3' /> : (
+          <>
+            <Transactions transactions={transactions} id={id} />
+            <Graph transactions={transactions} />
+            <Statistics />
+          </>
+        )}
       <Form />
     </div>
   );

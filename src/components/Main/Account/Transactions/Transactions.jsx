@@ -3,12 +3,11 @@ import { formatDate } from '../../../../utils/formatDate';
 import { getAccount } from '../../../../utils/getAccount';
 import style from './Transactions.module.css';
 import PropTypes from 'prop-types';
+import { v4 as uuidv4 } from 'uuid';
 
 export const Transactions = ({ id, transactions }) => {
-  console.log('transactions: ', transactions);
-
   let lastTransactions;
-  console.log('lastTransactions: ', lastTransactions);
+
   if (transactions) {
     if (transactions.length > 15) {
       lastTransactions = transactions.slice(-15).reverse();
@@ -17,7 +16,6 @@ export const Transactions = ({ id, transactions }) => {
         .reverse();
     }
   }
-
 
   return (
     <div className={style.history}>
@@ -38,7 +36,7 @@ export const Transactions = ({ id, transactions }) => {
                 const formattedAmount = formatAmount(id, amount, from, to);
 
                 return (
-                  <tr key={id}>
+                  <tr key={uuidv4()}>
                     <td className={`${style.td} ${style.account}`}>
                       {getAccount(id, from, to)}
                     </td>

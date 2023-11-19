@@ -94,9 +94,14 @@
 }
 
 @media (max-width: 768px) {
+  .history {
+    margin-bottom: 30px;
+    max-width: 100%;
+  }
+
   .container {
     max-height: 300px;
-    max-width: 450px;
+    max-width: 100%;
   }
 
   .table {
@@ -116,26 +121,24 @@
   }
 
   .td {
-    max-width: 30%;
     padding: 5px 0;
   }
 
   .account {
-    max-width: 220px;
-    padding-right: 5px;
-  }
-
-  .title {
-    font-size: 16px;
+    width: 40%;
+    padding-right: 8px;
   }
 
   .amount {
     padding-left: 10px;
-    max-width: 120px;
+    padding-right: 5px;
   }
 
   .date {
     padding-left: 5px;
-    max-width: 150px;
+  }
+
+  .title {
+    font-size: 16px;
   }
 }

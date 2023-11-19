@@ -1,0 +1,49 @@
+.container {
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  margin-top: 50px;
+  padding: 20px;
+  width: 580px;
+  max-height: 350px;
+}
+
+.header {
+  align-items: baseline;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-family: Nunito;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 27px;
+  margin-right: 20px;
+}
+
+.year {
+  font-family: Nunito;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.select {
+  background-color: initial;
+  border: none;
+  color: var(--text);
+  margin-left: auto;
+  outline: transparent;
+}
+
+.select option {
+  background-color: var(--burgundy);
+}
+
+@media (max-width: 768px) {
+  .container {
+    margin-top: 0;
+    width: 100%;
+    max-height: 400px;
+  }
+}
