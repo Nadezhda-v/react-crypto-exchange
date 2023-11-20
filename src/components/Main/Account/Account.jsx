@@ -49,7 +49,7 @@ export const Account = () => {
           <>
             <Transactions transactions={transactions} id={id} />
             <Graph transactions={transactions} />
-            <Statistics />
+            <Statistics transactions={transactions} id={id} />
           </>
         )}
       <Form />

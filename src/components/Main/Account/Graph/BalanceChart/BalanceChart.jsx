@@ -1,5 +1,3 @@
-import style from './BalanceChart.module.css';
-console.log('style: ', style);
 import PropTypes from 'prop-types';
 import {
   Chart as ChartJS,
@@ -36,7 +34,10 @@ const options = {
         title: () => null,
         label: context => context.formattedValue + ' ₽',
       },
-    }
+    },
+    legend: {
+      display: false,
+    },
   },
 };
 
@@ -59,7 +60,6 @@ export const BalanceChart = ({ year, transactions }) => {
         .filter(data => new Date(data.date).getFullYear() === year)
         .filter(data => new Date(data.date).getMonth() === i)
         .at(-1);
-    console.log('lastTransferMonth: ', lastTransferMonth);
 
     if (lastTransferMonth !== undefined) {
       lastTransfers.push(lastTransferMonth);
