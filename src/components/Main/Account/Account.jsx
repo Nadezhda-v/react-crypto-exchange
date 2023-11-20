@@ -48,7 +48,7 @@ export const Account = () => {
         <Preloader color='#FF29C3' /> : (
           <>
             <Transactions transactions={transactions} id={id} />
-            <Graph transactions={transactions} />
+            <Graph transactions={transactions} id={id} />
             <Statistics transactions={transactions} id={id} />
           </>
         )}

@@ -40,6 +40,12 @@
   background-color: var(--burgundy);
 }
 
+.notTransactions {
+  padding-top: 10px;
+  font-family: Nunito;
+  font-size: 15px;
+}
+
 @media (max-width: 768px) {
   .container {
     margin-top: 0;

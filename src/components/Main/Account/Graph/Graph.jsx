@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { BalanceChart } from './BalanceChart/BalanceChart';
 import { v4 as uuidv4 } from 'uuid';
 
-export const Graph = ({ transactions }) => {
+export const Graph = ({ transactions, id }) => {
   console.log('transactions: ', transactions);
   const years = [...new Set(transactions.map(data =>
     new Date(data.date).getFullYear()))];
@@ -32,12 +32,17 @@ export const Graph = ({ transactions }) => {
         </select>
       </div>
 
-      <BalanceChart year={selectYear} transactions={transactions} />
+      {transactions.length ? (
+        <BalanceChart year={selectYear} transactions={transactions} id={id} />
+      ) : (
+        <p className={style.notTransactions}>Данных нет</p>
+      )}
     </div>
   );
 };
 
 Graph.propTypes = {
   transactions: PropTypes.array,
+  id: PropTypes.string,
 };
 

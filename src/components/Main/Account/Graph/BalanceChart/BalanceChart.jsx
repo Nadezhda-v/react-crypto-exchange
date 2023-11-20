@@ -9,6 +9,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { v4 as uuidv4 } from 'uuid';
+import { formatAmountChart } from '../../../../../utils/formatAmount';
 
 ChartJS.register(
   CategoryScale,
@@ -48,32 +49,39 @@ const data = {
   }]
 };
 
-export const BalanceChart = ({ year, transactions }) => {
+export const BalanceChart = ({ year, transactions, id }) => {
   data.labels = [];
 
-  // Массив для хранения последних транзакций каждого месяца
+  // Массив для хранения транзакций каждого месяца
   const lastTransfers = [];
 
   for (let i = 0; i < 12; i++) {
     const lastTransferMonth =
       transactions
         .filter(data => new Date(data.date).getFullYear() === year)
-        .filter(data => new Date(data.date).getMonth() === i)
-        .at(-1);
+        .filter(data => new Date(data.date).getMonth() === i);
 
     if (lastTransferMonth !== undefined) {
       lastTransfers.push(lastTransferMonth);
     }
   }
 
-  data.datasets[0].data = lastTransfers
-    .map(data => {
-      const amount = Math.round(data.amount);
-      const month = new Date(data.date)
-        .toLocaleString('default', { month: 'short' });
+  console.log(' lastTransfers: ', lastTransfers);
 
-      return { x: month, y: amount };
+  if (lastTransfers.length > 0) {
+    const balances = lastTransfers.map(transfers => {
+      let balance = 0;
+      transfers.forEach(({ amount, from, to }) => {
+        const formattedAmount = formatAmountChart(id, amount, from, to);
+        balance += formattedAmount;
+        console.log('balance: ', balance);
+      });
+
+      return Math.round(balance);
     });
+
+    console.log('balances: ', balances);
+  }
 
   return (
     <Line
@@ -87,4 +95,5 @@ export const BalanceChart = ({ year, transactions }) => {
 BalanceChart.propTypes = {
   year: PropTypes.number,
   transactions: PropTypes.array,
+  id: PropTypes.string,
 };
