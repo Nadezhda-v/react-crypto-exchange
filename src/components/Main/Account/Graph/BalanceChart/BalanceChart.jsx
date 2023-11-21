@@ -1,4 +1,4 @@
-/* import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -47,82 +47,97 @@ const data = {
   datasets: [{
     borderColor: '#933FFE',
   }]
-};*/
+};
 
 export const BalanceChart = ({ year, transactions, id, years }) => {
-  // data.labels = [];
+  data.labels = [];
 
-  // Объект для хранения балансов по годам
-  // const yearBalances = {};
+  const calculateBalance = (allIncomes) => {
+    const balancesByYear = {};
 
-  // Объект для хранения всех транзакций по годам
-  // const allTransfers = {};
+    let previousBalance = 0;
 
-  /* years.forEach((year) => {
-    const transfersOfYear = {};
-    for (let i = 0; i < 12; i++) {
-      const lastTransferMonth = transactions
-        .filter((data) => new Date(data.date).getFullYear() === year)
-        .filter((data) => new Date(data.date).getMonth() === i);
+    for (const year in allIncomes) {
+      if (Object.prototype.hasOwnProperty.call(allIncomes, year)) {
+        const balances = [];
+        let balance = previousBalance;
 
-      if (lastTransferMonth.length !== undefined) {
-        transfersOfYear[i] = lastTransferMonth;
+        allIncomes[year].forEach((value) => {
+          balance += value;
+          balances.push(balance);
+        });
+
+        balancesByYear[year] = balances;
+        previousBalance = balances[balances.length - 1];
       }
     }
 
-    allTransfers[year] = transfersOfYear;
+    return balancesByYear;
+  };
 
+  const balancesByYear = (years) => {
+    const allIncomes = {};
 
-    console.log('allTransfers: ', allTransfers);
+    years.forEach((year) => {
+      const transfersOfYear = [];
+      for (let i = 0; i < 12; i++) {
+        const transferOfMonth =
+          transactions
+            .filter(data => new Date(data.date).getFullYear() === year)
+            .filter(data => new Date(data.date).getMonth() === i);
 
-    if (allTransfers.length > 0) {
-      const incomes = allTransfers.map(transfers => {
-        let balance = 0;
-        transfers.forEach(({ amount, from, to }) => {
-          const formattedAmount = formatAmountChart(id, amount, from, to);
-          balance += formattedAmount;
-          console.log('balance: ', balance);
+        if (transferOfMonth !== undefined) {
+          transfersOfYear[i] = transferOfMonth;
+        }
+      }
+
+      if (transfersOfYear.length > 0) {
+        const incomes = transfersOfYear.map(transfers => {
+          let balance = 0;
+          transfers.forEach(({ amount, from, to }) => {
+            const formattedAmount = formatAmountChart(id, amount, from, to);
+            balance += formattedAmount;
+          });
+
+          return Math.round(balance);
         });
 
-        return Math.round(balance);
-      });
+        allIncomes[year] = incomes;
+      }
+    });
 
-      // Функция для вычисления баланса на счету за каждый месяц
-      const calculateBalance = (incomes) => {
-        let balance = 0;
-        const balances = [];
+    const balances = calculateBalance(allIncomes);
+    console.log('balances: ', balances);
+    return balances;
+  };
 
-        for (let i = 0; i < incomes.length; i++) {
-          balance += incomes[i];
-          balances.push(balance);
-        }
+  const months = ['Янв', 'Фев', 'Март', 'Апр', 'Май',
+    'Июнь', 'Июль', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
 
-        return balances;
-      };
+  const resultBalances = balancesByYear(years);
+  console.log('resultBalances: ', resultBalances);
 
-      yearBalances[year] = calculateBalance(incomes);
-    }
-  });
+  const selectedYear = resultBalances[year];
+  console.log('selectedYear: ', selectedYear);
 
-  console.log('lastTransfers: ', allTransfers);
-  console.log('yearBalances:', yearBalances);
+  data.datasets[0].data = selectedYear
+    .map((balance, index) => ({
+      x: months[index],
+      y: balance,
+    }));
 
-
-  /* const months = ['Янв', 'Фев', 'Март', 'Апр', 'Май', 'Июнь',
-    'Июль', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];*/
-
-  /* data.datasets[0].data = balances.map((balance, index) => ({
-    x: months[index],
-    y: balance,
-  }));*/
-
-  // console.log('incomes: ', incomes);
-  // console.log('balances: ', balances);*/
+  return (
+    <Line
+      key={uuidv4()}
+      options={options}
+      data={data}
+    />
+  );
 };
 
-/* BalanceChart.propTypes = {
+BalanceChart.propTypes = {
   year: PropTypes.number,
   transactions: PropTypes.array,
   id: PropTypes.string,
   years: PropTypes.array,
-};*/
+};
