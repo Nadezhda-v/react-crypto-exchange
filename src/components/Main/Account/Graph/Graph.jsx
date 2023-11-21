@@ -5,7 +5,6 @@ import { BalanceChart } from './BalanceChart/BalanceChart';
 import { v4 as uuidv4 } from 'uuid';
 
 export const Graph = ({ transactions, id }) => {
-  console.log('transactions: ', transactions);
   const years = [...new Set(transactions.map(data =>
     new Date(data.date).getFullYear()))];
 
@@ -18,7 +17,7 @@ export const Graph = ({ transactions, id }) => {
   return (
     <div className={style.container}>
       <div className={style.header}>
-        <h3 className={style.title}>Динамика</h3>
+        <h3 className={style.title}>История баланса</h3>
         <span className={style.year}>{selectYear}</span>
 
         <select

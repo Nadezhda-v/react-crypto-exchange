@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { accountRequestAsync } from './accountAction';
+import { accountRequestAsync, transferPostAsync } from './accountAction';
 
 const initialState = {
   loading: false,
@@ -24,6 +24,15 @@ export const accountSlice = createSlice({
     [accountRequestAsync.rejected.type]: (state, action) => {
       state.loading = false;
       state.error = action.error;
+    },
+    [transferPostAsync.fulfilled.type]: (state, action) => {
+      if (!action.payload.error) {
+        state.data = action.payload.data;
+      }
+      state.error = action.payload.error;
+    },
+    [transferPostAsync.rejected.type]: (state, action) => {
+      state.error = action.payload.error;
     },
   }
 });

@@ -1,18 +1,27 @@
 import { useForm } from 'react-hook-form';
 import style from './Form.module.css';
-// import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { transferPostAsync } from '../../../../store/account/accountAction';
 
 export const Form = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  let transactionError = useSelector(state => state.account.error);
+  console.log('transactionError: ', transactionError);
+
+  if (transactionError === 'Overdraft prevented') {
+    transactionError = 'Недостаточно средств';
+  }
 
   const onSubmit = (data) => {
-    // dispatch(transferRequestAsync(data));
+    dispatch(transferPostAsync(data));
+    reset();
   };
 
   const handleInputAccount = (e) => {
@@ -20,10 +29,13 @@ export const Form = () => {
   };
 
   const handleInputSum = (e) => {
-    const inputValue = e.target.value;
-    const match = inputValue.match(/^\d+(\.\d{1,2})?/);
+    e.target.value = e.target.value.replace(/[^0-9.]/g, '');
 
-    e.target.value = match ? match[0] : '';
+    const parts = e.target.value.split('.');
+
+    if (parts.length > 1 && parts[1].length > 2) {
+      e.target.value = parts[0] + '.' + parts[1].slice(0, 2);
+    }
   };
 
   return (
@@ -32,13 +44,13 @@ export const Form = () => {
 
       <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={style.wrapper}>
-          {errors.account && <span className={style.error}>
-            {errors.account.message}
+          {errors.to && <span className={style.error}>
+            {errors.to.message}
           </span>}
 
-          <label className={style.label} htmlFor='account'>Счет</label>
+          <label className={style.label} htmlFor='to'>Счет</label>
           <input
-            {...register('account', {
+            {...register('to', {
               required: 'Заполните поле',
               pattern: {
                 value: /^[0-9]{12,}$/,
@@ -46,33 +58,39 @@ export const Form = () => {
               },
             })}
             className={style.input}
-            id='account'
+            id='to'
             onInput={handleInputAccount}
           />
         </div>
 
         <div className={style.wrapper}>
-          {errors.sum && <span className={style.error}>
-            {errors.sum.message}
+          {errors.amount && <span className={style.error}>
+            {errors.amount.message}
           </span>}
 
-          <label className={style.label} htmlFor='sum'>Сумма</label>
+          <label className={style.label} htmlFor='amount'>Сумма</label>
           <input
-            {...register('sum', {
+            {...register('amount', {
               required: 'Заполните поле',
               pattern: {
                 value: /^\d+(\.\d{1,2})?$/,
-                message: 'Некорректная сумма',
+                message: 'Неверный формат',
               },
             })}
             className={style.input}
-            id='sum'
+            id='amount'
             onInput={handleInputSum}
           />
         </div>
 
-        <button className={style.button}>Перевести</button>
-      </form>
-    </div>
+        <div className={style.buttonWrap}>
+          {transactionError && (
+            <p className={style.errorSubmit}>{transactionError}</p>
+          )}
+
+          <button className={style.button}>Перевести</button>
+        </div>
+      </form >
+    </div >
   );
 };

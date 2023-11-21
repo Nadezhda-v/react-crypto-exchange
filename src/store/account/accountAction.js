@@ -16,8 +16,38 @@ export const accountRequestAsync = createAsyncThunk(
     })
       .then(({ data: { payload } }) => {
         const data = payload;
-        console.log('data: ', data);
         return data;
+      })
+      .catch((error) => ({ error: error.message }));
+  }
+);
+
+export const transferPostAsync = createAsyncThunk(
+  'account/send',
+  ({ to, amount }, { getState }) => {
+    console.log('to, amount: ', to, amount);
+    const token = getState().token.token;
+    const currentAccount = getState().account.data.account;
+    console.log('currentAccount: ', currentAccount);
+
+    if (!token) return;
+
+    return axios.post(
+      `${URL_API}/transfer-funds`,
+      {
+        from: currentAccount,
+        to,
+        amount,
+      },
+      {
+        headers: {
+          Authorization: `Basic ${token}`,
+        },
+      })
+      .then(({ data: { payload, error } }) => {
+        const data = payload;
+
+        return { data, error };
       })
       .catch((error) => ({ error: error.message }));
   }

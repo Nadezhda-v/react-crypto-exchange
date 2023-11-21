@@ -4,10 +4,9 @@ import style from './Statistics.module.css';
 import PropTypes from 'prop-types';
 
 export const Statistics = ({ transactions, id }) => {
+  console.log('transactions: ', transactions);
   const [selectedStat, setSelectedStat] = useState('month');
   const [chartLabel, setChartLabel] = useState('');
-  const [income, setIncome] = useState(1);
-  const [expenses, setExpenses] = useState(1);
 
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().toLocaleString('ru', { month: 'long' });
@@ -28,11 +27,8 @@ export const Statistics = ({ transactions, id }) => {
     <div className={style.statistics}>
       <h3 className={style.title}>Доходы</h3>
 
-      {income > 0 && expenses > 0 ? (
+      {transactions.length ? (
         <div className={style.wrappper}>
-          <div className={style.wrappper}>
-
-          </div>
           <div className={style.buttonsWrap}>
             <button
               className={`${style.button}
@@ -62,8 +58,6 @@ export const Statistics = ({ transactions, id }) => {
               transactions={transactions}
               id={id}
               selectedStat={selectedStat}
-              setIncome={setIncome}
-              setExpenses={setExpenses}
             />
           </div>
         </div>

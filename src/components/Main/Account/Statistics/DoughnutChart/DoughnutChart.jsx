@@ -43,7 +43,7 @@ const options = {
     },
     legend: {
       display: true,
-      position: 'right',
+      position: 'bottom',
       labels: {
         font: {
           family: 'Nunito',
@@ -51,19 +51,19 @@ const options = {
         },
         usePointStyle: true,
         padding: 22,
-        boxWidth: 10,
+        boxWidth: 12,
         boxHeight: 10,
       },
     },
   },
 };
 
+ChartJS.defaults.color = '#C6B6D7';
+
 export const DoughnutChart = ({
   transactions,
   id,
   selectedStat,
-  setIncome,
-  setExpenses,
 }) => {
   // Получение текущего года
   const currentYear = new Date().getFullYear();
@@ -104,20 +104,13 @@ export const DoughnutChart = ({
       }
     });
 
-    console.log('expenses: ', expenses);
-    console.log('income: ', income);
     const roundedIncome = Math.round(income);
     const roundedExpenses = Math.round(expenses);
 
     data.datasets[0].data = [roundedIncome, roundedExpenses];
-    data.labels = [`Доходы ${roundedIncome} ₽`,
-      `Расходы ${roundedExpenses} ₽`];
-  }
 
-  if (income === 0 && expenses === 0) {
-    setIncome(0);
-    setExpenses(0);
-    return;
+    data.labels = [`Доходы \n ${roundedIncome} ₽`,
+      `Расходы  ${roundedExpenses} ₽`];
   }
 
   return (
@@ -132,7 +125,5 @@ DoughnutChart.propTypes = {
   transactions: PropTypes.array,
   id: PropTypes.string,
   selectedStat: PropTypes.string,
-  setIncome: PropTypes.func,
-  setExpenses: PropTypes.func,
 };
 

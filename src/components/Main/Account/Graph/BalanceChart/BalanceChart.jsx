@@ -107,7 +107,6 @@ export const BalanceChart = ({ year, transactions, id, years }) => {
     });
 
     const balances = calculateBalance(allIncomes);
-    console.log('balances: ', balances);
     return balances;
   };
 
@@ -115,10 +114,7 @@ export const BalanceChart = ({ year, transactions, id, years }) => {
     'Июнь', 'Июль', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];
 
   const resultBalances = balancesByYear(years);
-  console.log('resultBalances: ', resultBalances);
-
   const selectedYear = resultBalances[year];
-  console.log('selectedYear: ', selectedYear);
 
   data.datasets[0].data = selectedYear
     .map((balance, index) => ({

@@ -52,4 +52,8 @@
     width: 100%;
     max-height: 400px;
   }
+
+  .title {
+    font-size: 16px;
+  }
 }
