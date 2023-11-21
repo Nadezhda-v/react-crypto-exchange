@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+/* import PropTypes from 'prop-types';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -47,53 +47,82 @@ const data = {
   datasets: [{
     borderColor: '#933FFE',
   }]
-};
+};*/
 
-export const BalanceChart = ({ year, transactions, id }) => {
-  data.labels = [];
+export const BalanceChart = ({ year, transactions, id, years }) => {
+  // data.labels = [];
 
-  // Массив для хранения транзакций каждого месяца
-  const lastTransfers = [];
+  // Объект для хранения балансов по годам
+  // const yearBalances = {};
 
-  for (let i = 0; i < 12; i++) {
-    const lastTransferMonth =
-      transactions
-        .filter(data => new Date(data.date).getFullYear() === year)
-        .filter(data => new Date(data.date).getMonth() === i);
+  // Объект для хранения всех транзакций по годам
+  // const allTransfers = {};
 
-    if (lastTransferMonth !== undefined) {
-      lastTransfers.push(lastTransferMonth);
+  /* years.forEach((year) => {
+    const transfersOfYear = {};
+    for (let i = 0; i < 12; i++) {
+      const lastTransferMonth = transactions
+        .filter((data) => new Date(data.date).getFullYear() === year)
+        .filter((data) => new Date(data.date).getMonth() === i);
+
+      if (lastTransferMonth.length !== undefined) {
+        transfersOfYear[i] = lastTransferMonth;
+      }
     }
-  }
 
-  console.log(' lastTransfers: ', lastTransfers);
+    allTransfers[year] = transfersOfYear;
 
-  if (lastTransfers.length > 0) {
-    const balances = lastTransfers.map(transfers => {
-      let balance = 0;
-      transfers.forEach(({ amount, from, to }) => {
-        const formattedAmount = formatAmountChart(id, amount, from, to);
-        balance += formattedAmount;
-        console.log('balance: ', balance);
+
+    console.log('allTransfers: ', allTransfers);
+
+    if (allTransfers.length > 0) {
+      const incomes = allTransfers.map(transfers => {
+        let balance = 0;
+        transfers.forEach(({ amount, from, to }) => {
+          const formattedAmount = formatAmountChart(id, amount, from, to);
+          balance += formattedAmount;
+          console.log('balance: ', balance);
+        });
+
+        return Math.round(balance);
       });
 
-      return Math.round(balance);
-    });
+      // Функция для вычисления баланса на счету за каждый месяц
+      const calculateBalance = (incomes) => {
+        let balance = 0;
+        const balances = [];
 
-    console.log('balances: ', balances);
-  }
+        for (let i = 0; i < incomes.length; i++) {
+          balance += incomes[i];
+          balances.push(balance);
+        }
 
-  return (
-    <Line
-      key={uuidv4()}
-      options={options}
-      data={data}
-    />
-  );
+        return balances;
+      };
+
+      yearBalances[year] = calculateBalance(incomes);
+    }
+  });
+
+  console.log('lastTransfers: ', allTransfers);
+  console.log('yearBalances:', yearBalances);
+
+
+  /* const months = ['Янв', 'Фев', 'Март', 'Апр', 'Май', 'Июнь',
+    'Июль', 'Авг', 'Сен', 'Окт', 'Ноя', 'Дек'];*/
+
+  /* data.datasets[0].data = balances.map((balance, index) => ({
+    x: months[index],
+    y: balance,
+  }));*/
+
+  // console.log('incomes: ', incomes);
+  // console.log('balances: ', balances);*/
 };
 
-BalanceChart.propTypes = {
+/* BalanceChart.propTypes = {
   year: PropTypes.number,
   transactions: PropTypes.array,
   id: PropTypes.string,
-};
+  years: PropTypes.array,
+};*/

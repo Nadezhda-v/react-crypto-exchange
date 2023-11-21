@@ -33,7 +33,12 @@ export const Graph = ({ transactions, id }) => {
       </div>
 
       {transactions.length ? (
-        <BalanceChart year={selectYear} transactions={transactions} id={id} />
+        <BalanceChart
+          year={selectYear}
+          transactions={transactions}
+          id={id}
+          years={years}
+        />
       ) : (
         <p className={style.notTransactions}>Данных нет</p>
       )}
