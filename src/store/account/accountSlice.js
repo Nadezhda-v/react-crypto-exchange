@@ -23,7 +23,7 @@ export const accountSlice = createSlice({
     },
     [accountRequestAsync.rejected.type]: (state, action) => {
       state.loading = false;
-      state.error = action.error;
+      state.error = action.payload.error;
     },
     [transferPostAsync.fulfilled.type]: (state, action) => {
       if (!action.payload.error) {

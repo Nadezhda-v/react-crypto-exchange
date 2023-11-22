@@ -52,9 +52,10 @@ export const Account = () => {
             <div className={style.info}>
               <Statistics transactions={transactions} id={id} />
             </div>
+            <Form />
           </>
-        )}
-      <Form />
+        )
+      }
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import Auth from './Auth';
 import List from './List';
 import Account from './Account';
+import Exchange from './Exchange';
 
 export const Main = () => {
   const location = useLocation();
@@ -17,8 +18,8 @@ export const Main = () => {
           <Route path='/' element={<Auth />} />
           <Route path='/crypto' element={<List />} />
           <Route path='/crypto/account/:id' element={<Account />} />
-          {/* <Route path='/exchange' element={<Exchange/>} />
-            <Route path='*' element={<NotFound />} />*/}
+          <Route path='/exchange' element={<Exchange/>} />
+          {/* <Route path='*' element={<NotFound />} />*/}
         </Routes>
       </Layout>
     </main>
