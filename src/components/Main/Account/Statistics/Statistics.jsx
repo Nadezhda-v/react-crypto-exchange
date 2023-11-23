@@ -4,7 +4,6 @@ import style from './Statistics.module.css';
 import PropTypes from 'prop-types';
 
 export const Statistics = ({ transactions, id }) => {
-  console.log('transactions: ', transactions);
   const [selectedStat, setSelectedStat] = useState('month');
   const [chartLabel, setChartLabel] = useState('');
 

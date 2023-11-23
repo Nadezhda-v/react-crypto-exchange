@@ -9,7 +9,7 @@ export const currenciesRequestAsync = createAsyncThunk(
 
     if (!token) return;
 
-    return axios(`${URL_API}/currencies`,
+    return axios(`${URL_API}currencies`,
       {
         headers: {
           Authorization: `Basic ${token}`,
@@ -17,9 +17,32 @@ export const currenciesRequestAsync = createAsyncThunk(
       })
       .then(({ data: { payload } }) => {
         const data = payload;
-        console.log('data: ', data);
         return data;
       })
       .catch((error) => ({ error: error.message }));
+  }
+);
+
+export const currenciesBuyAsync = createAsyncThunk(
+  'currencies/buy',
+  (data, { getState }) => {
+    const token = getState().token.token;
+    const currentCurrencies = getState().currencies.data;
+
+    if (!token) return;
+
+    return axios.post(
+      `${URL_API}currency-buy`, data,
+      {
+        headers: {
+          Authorization: `Basic ${token}`,
+        },
+      })
+      .then(({ data: { payload, error } }) => {
+        const data = payload === null ? currentCurrencies : payload;
+
+        return { data, error };
+      })
+      .catch(error => Promise.reject(error));
   }
 );

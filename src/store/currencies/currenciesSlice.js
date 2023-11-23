@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { currenciesRequestAsync } from './currenciesAction';
+import { currenciesBuyAsync, currenciesRequestAsync } from './currenciesAction';
 
 const initialState = {
   loading: false,
@@ -22,6 +22,19 @@ export const currenciesSlice = createSlice({
       state.error = '';
     },
     [currenciesRequestAsync.rejected.type]: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.error;
+    },
+    [currenciesBuyAsync.pending.type]: state => {
+      state.loading = true;
+      state.error = '';
+    },
+    [currenciesBuyAsync.fulfilled.type]: (state, action) => {
+      state.data = action.payload.data;
+      state.error = action.payload.error;
+      state.loading = false;
+    },
+    [currenciesBuyAsync.rejected.type]: (state, action) => {
       state.loading = false;
       state.error = action.payload.error;
     },

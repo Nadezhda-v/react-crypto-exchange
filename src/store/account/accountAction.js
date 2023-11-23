@@ -25,15 +25,13 @@ export const accountRequestAsync = createAsyncThunk(
 export const transferPostAsync = createAsyncThunk(
   'account/send',
   ({ to, amount }, { getState }) => {
-    console.log('to, amount: ', to, amount);
     const token = getState().token.token;
     const currentAccount = getState().account.data.account;
-    console.log('currentAccount: ', currentAccount);
 
     if (!token) return;
 
     return axios.post(
-      `${URL_API}/transfer-funds`,
+      `${URL_API}transfer-funds`,
       {
         from: currentAccount,
         to,

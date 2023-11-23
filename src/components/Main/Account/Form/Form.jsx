@@ -13,7 +13,6 @@ export const Form = () => {
 
   const dispatch = useDispatch();
   let transactionError = useSelector(state => state.account.error);
-  console.log('transactionError: ', transactionError);
 
   if (transactionError === 'Overdraft prevented') {
     transactionError = 'Недостаточно средств';

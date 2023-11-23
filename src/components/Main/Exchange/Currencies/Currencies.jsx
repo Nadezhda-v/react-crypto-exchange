@@ -9,7 +9,6 @@ export const Currencies = () => {
   const dispatch = useDispatch();
   const token = useSelector(state => state.token.token);
   const currencies = useSelector(state => state.currencies.data);
-  console.log('currencies : ', currencies);
 
   useEffect(() => {
     if (token) dispatch(currenciesRequestAsync());
@@ -27,7 +26,7 @@ export const Currencies = () => {
           Object.entries(currencies).map(([key, { code, amount }]) => (
             <tr key={key}>
               <td className={style.code}>{code}</td>
-              <td className={style.amount}>{amount}</td>
+              <td className={style.amount}>{amount.toFixed(2)}</td>
             </tr>
           )))}
       </tbody>

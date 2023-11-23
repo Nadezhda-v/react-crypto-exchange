@@ -24,10 +24,10 @@ export const Exchange = () => {
                         <span className={style.label}>Счет </span>
                         №{account}
                       </p>
-                      <span className={style.balance}>
+                      <p className={style.balance}>
                         <span className={style.label}>Баланс </span>
                         {balance}
-                      </span>
+                      </p>
                     </div>
                   )
                 ))
@@ -41,9 +41,7 @@ export const Exchange = () => {
         <Rates />
       </div>
 
-      <div className={style.form}>
-        <Form />
-      </div>
+      <Form />
     </div>
   );
 };

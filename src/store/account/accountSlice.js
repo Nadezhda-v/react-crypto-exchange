@@ -25,13 +25,19 @@ export const accountSlice = createSlice({
       state.loading = false;
       state.error = action.payload.error;
     },
+    [transferPostAsync.pending.type]: (state) => {
+      state.loading = true;
+      state.error = '';
+    },
     [transferPostAsync.fulfilled.type]: (state, action) => {
       if (!action.payload.error) {
         state.data = action.payload.data;
       }
       state.error = action.payload.error;
+      state.loading = false;
     },
     [transferPostAsync.rejected.type]: (state, action) => {
+      state.loading = false;
       state.error = action.payload.error;
     },
   }

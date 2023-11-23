@@ -7,6 +7,7 @@ import { authReducer } from './auth/authReducer';
 import { createAccountReducer } from './createAccount/createAccountSlice';
 import { accountReducer } from './account/accountSlice';
 import { currenciesReducer } from './currencies/currenciesSlice';
+import { allCurrenciesReducer } from './allCurrencies/allCurrenciesSlice';
 import {
   FLUSH,
   REHYDRATE,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   createAccount: createAccountReducer,
   account: accountReducer,
   currencies: currenciesReducer,
+  allCurrencies: allCurrenciesReducer,
 });
 
 const persistConfig = {
