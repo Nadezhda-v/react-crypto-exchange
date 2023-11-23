@@ -1,6 +1,6 @@
 .statistics {
   margin-top: 40px;
-  max-width: 480px;
+  width: 580px;
   max-height: 440px;
   padding-left: 10px;
 }
@@ -40,7 +40,7 @@
 }
 
 .сhart {
-  height: 350px;
+  height: 330px;
   width: 450px;
   float: left;
   position: relative;
@@ -52,7 +52,7 @@
   height: 20px;
   position: absolute;
   top: 40%;
-  left: -10%;
+  left: -13%;
   margin-top: -15px;
   text-align: center;
   z-index: 999;

@@ -5,6 +5,7 @@ import { authRequestAsync } from '../../../store/auth/authAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Preloader from '../../../UI/Preloader';
 
 export const Auth = () => {
   const {
@@ -17,6 +18,7 @@ export const Auth = () => {
   const navigate = useNavigate();
   const token = useSelector((state) => state.token.token);
   const dataAuth = useSelector((state) => state.auth.data);
+  const loading = useSelector((state) => state.auth.loading);
 
   const handleInput = (e) => {
     e.target.value = e.target.value.replace(/[^A-Za-z]/g, '');
@@ -85,9 +87,11 @@ export const Auth = () => {
             />
           </div>
 
-          <button className={style.submit} type='submit'>
-            Войти
-          </button>
+          {loading ? (<Preloader color='#FF29C3'/>) : (
+            <button className={style.submit} type='submit'>
+              Войти
+            </button>
+          )}
           {dataAuth.error &&
             <span className={style.errorSubmit}>
               Неверный логин или пароль

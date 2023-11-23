@@ -55,7 +55,7 @@ export const Transactions = ({ id, transactions }) => {
             ) : (
               <tr>
                 <td colSpan='3' className={style.notHistory}>
-                  Нет истории
+                  Данных нет
                 </td>
               </tr>
             )}

@@ -1,8 +1,9 @@
 .container {
   display: flex;
   flex-direction: column;
-  margin-bottom: 40px;
-  width: 100%;
+  margin: 40px 0;
+  width: 580px;
+  max-width: 100%;
 }
 
 .title {
@@ -13,9 +14,8 @@
 }
 
 .form {
-  align-items: flex-end;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 40px;
 }
 
@@ -48,10 +48,9 @@
   font-size: 18px;
   font-weight: 700;
   line-height: 25px;
-  padding: 22.5px 80px;
+  padding: 22.5px 142px;
   border-radius: 10px;
   background: linear-gradient(225deg, #18C8FF 14.89%, #933FFE 85.85%);
-  max-width: 380px;
 }
 
 .button:hover {
@@ -75,20 +74,16 @@
 
 .buttonWrap {
   position: relative;
+  max-width: 380px;
 }
 
 @media (max-width: 870px) {
-  .form {
-    align-items: start;
-  }
-
   .title {
     font-size: 16px;
     margin-bottom: 20px;
   }
 
   .form {
-    flex-direction: column;
     gap: 25px;
   }
 
@@ -97,8 +92,6 @@
   }
 
   .button {
-    display: flex;
-    justify-content: center;
     max-width: 100%;
     width: 380px;
     padding: 18px 80px;

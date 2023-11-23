@@ -49,9 +49,7 @@ export const Account = () => {
           <>
             <Transactions transactions={transactions} id={id} />
             <Graph transactions={transactions} id={id} />
-            <div className={style.info}>
-              <Statistics transactions={transactions} id={id} />
-            </div>
+            <Statistics transactions={transactions} id={id} />
             <Form />
           </>
         )

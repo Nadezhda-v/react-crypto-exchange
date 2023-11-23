@@ -46,7 +46,7 @@ export const Form = () => {
     }
   }, []);
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     dispatch(currenciesBuyAsync(data));
     reset();
   };
@@ -122,7 +122,7 @@ export const Form = () => {
             <p className={style.errorSubmit}>{buyError}</p>
           )}
 
-          <button className={style.button} disabled={to === from}>
+          <button className={style.button} disabled={to === from} type='submit'>
             Обменять
           </button>
         </div>

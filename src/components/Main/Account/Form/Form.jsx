@@ -87,9 +87,11 @@ export const Form = () => {
             <p className={style.errorSubmit}>{transactionError}</p>
           )}
 
-          <button className={style.button}>Перевести</button>
+          <button className={style.button} type='submit'>
+            Перевести
+          </button>
         </div>
-      </form >
-    </div >
+      </form>
+    </div>
   );
 };

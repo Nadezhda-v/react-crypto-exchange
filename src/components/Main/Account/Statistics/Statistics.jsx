@@ -60,7 +60,7 @@ export const Statistics = ({ transactions, id }) => {
             />
           </div>
         </div>
-      ) : <p className={style.notStat}>Статистики нет</p>}
+      ) : <p className={style.notStat}>Данных нет</p>}
     </div>
   );
 };
