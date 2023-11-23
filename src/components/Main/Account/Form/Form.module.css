@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 40px 0;
+  width: 580px;
+  max-width: 100%;
+}
+
+.title {
+  margin-bottom: 40px;
+  font-family: Comfortaa;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 380px;
+  position: relative;
+}
+
+.label {
+  color: var(--text);
+  font-family: Nunito;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 2px;
+  padding-left: 15px;
+}
+
+.input {
+  border: 2px solid var(--pink);
+  border-radius: 10px;
+  min-height: 70px;
+  padding: 20px;
+}
+
+.button {
+  font-family: Nunito;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 25px;
+  padding: 22.5px 142px;
+  border-radius: 10px;
+  background: linear-gradient(225deg, #18C8FF 14.89%, #933FFE 85.85%);
+}
+
+.button:hover {
+  background: linear-gradient(88deg, #933FFE -14.85%, #18C8FF 50.2%, #933FFE 115.25%, #933FFE 115.25%)
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  position: absolute;
+  right: 10px;
+}
+
+.errorSubmit {
+  color: red;
+  font-size: 14px;
+  position: absolute;
+  right: 18px;
+  top: -22px;
+}
+
+.buttonWrap {
+  position: relative;
+  max-width: 380px;
+}
+
+@media (max-width: 870px) {
+  .title {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .form {
+    gap: 25px;
+  }
+
+  .wrapper {
+    max-width: 100%;
+  }
+
+  .button {
+    max-width: 100%;
+    width: 380px;
+    padding: 18px 80px;
+  }
+
+  .input {
+    min-height: 50px;
+  }
+
+  .errorSubmit {
+    bottom: 125px;
+    padding-top: 2px;
+  }
+
+  .buttonWrap {
+    max-width: 100%;
+  }
+}

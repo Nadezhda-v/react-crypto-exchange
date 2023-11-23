@@ -1,0 +1,10 @@
+.date {
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 130%;
+  color: var(--gray);
+}
+
+.text {
+  color: var(--gray);
+}

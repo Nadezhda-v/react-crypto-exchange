@@ -1,0 +1,13 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.list {
+  display: flex;
+  gap: 30px;
+}
+
+.item {
+  font-weight: 700;
+}

@@ -1,0 +1,21 @@
+.main {
+  padding: 30px 0;
+  min-height: 100vh;
+  background-image: url('./img/main.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom left;
+}
+
+.noBackgroundImage {
+  background-image: none;
+  background: linear-gradient(to bottom, #27153d 0%, #0B0B0F 100%);
+}
+
+@media (max-width: 850px) {
+  .main {
+    padding: 20px 0;
+    background-image: none;
+    background: linear-gradient(to bottom, #27153d 0%, #0B0B0F 100%);
+  }
+}

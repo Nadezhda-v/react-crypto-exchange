@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.logout {
+  cursor: pointer;
+  border: 0;
+  background-color: initial;
+  color: var(--white);
+  font-weight: 700;
+}
+
+.svg {
+  width: 18px;
+  height: 18px;
+}

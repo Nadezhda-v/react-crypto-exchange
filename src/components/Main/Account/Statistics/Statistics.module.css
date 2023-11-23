@@ -1,0 +1,89 @@
+.statistics {
+  margin-top: 40px;
+  width: 580px;
+  max-height: 440px;
+  padding-left: 10px;
+}
+
+.wrappper {
+  display: flex;
+  max-height: 440px;
+  position: relative;
+}
+
+.title {
+  font-family: Comfortaa;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.buttonsWrap {
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+  top: 30%;
+  position: absolute;
+}
+
+.button {
+  background-color: inherit;
+  color: var(--white);
+  cursor: pointer;
+  align-self: flex-start;
+  font-family: Nunito;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.selected {
+  color: var(--violet);
+}
+
+.сhart {
+  height: 330px;
+  width: 450px;
+  float: left;
+  position: relative;
+  margin: 30px 0 30px 40px;
+}
+
+.insideText {
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  top: 40%;
+  left: -13%;
+  margin-top: -15px;
+  text-align: center;
+  z-index: 999;
+}
+
+.notStat {
+  font-family: Nunito;
+  font-size: 16px;
+  padding: 20px 0 30px;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 568px) {
+  .buttonsWrap {
+    gap: 15px;
+    padding-right: 20px;
+  }
+
+  .сhart {
+    height: 200px;
+    width: 200px;
+  }
+
+  .insideText {
+    font-size: 12px;
+    top: 34%;
+    left: -1%;
+  }
+}
