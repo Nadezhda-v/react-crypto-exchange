@@ -19,7 +19,6 @@ export const Main = () => {
           <Route path='/crypto' element={<List />} />
           <Route path='/crypto/account/:id' element={<Account />} />
           <Route path='/exchange' element={<Exchange/>} />
-          {/* <Route path='*' element={<NotFound />} />*/}
         </Routes>
       </Layout>
     </main>
