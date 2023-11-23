@@ -94,6 +94,10 @@
   background: linear-gradient(225deg, #18C8FF 14.89%, #933FFE 85.85%);
 }
 
+.submit:hover {
+  background: linear-gradient(88deg, #933FFE -14.85%, #18C8FF 50.2%, #933FFE 115.25%, #933FFE 115.25%)
+}
+
 @media (max-width: 850px) {
   .container {
     justify-content: center;

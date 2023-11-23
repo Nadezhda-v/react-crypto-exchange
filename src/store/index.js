@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { tokenMiddleware, tokenReducer } from './tokenReducer';
+import { tokenReducer } from './tokenReducer';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { accountsReducer } from './accounts/accountsSlice';
@@ -30,6 +30,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
+  whitelist: ['token', 'auth', 'accounts'],
 };
 
 const store = configureStore({
@@ -39,7 +40,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(tokenMiddleware),
+    }),
 });
 
 const persistor = persistStore(store);

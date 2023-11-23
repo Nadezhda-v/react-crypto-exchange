@@ -14,6 +14,9 @@ export const accountsSlice = createSlice({
     addAccount: (state, action) => {
       state.data.push(action.payload);
     },
+    clearAccounts: (state) => {
+      state.data = [];
+    },
   },
   extraReducers: {
     [accountsRequestAsync.pending.type]: (state) => {
