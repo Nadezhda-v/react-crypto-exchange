@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   currenciesRequestAsync,
 } from '../../../../store/currencies/currenciesAction';
+import { round } from '../../../../utils/roundNumber';
 
 export const Currencies = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export const Currencies = () => {
           Object.entries(currencies).map(([key, { code, amount }]) => (
             <tr key={key}>
               <td className={style.code}>{code}</td>
-              <td className={style.amount}>{amount.toFixed(2)}</td>
+              <td className={style.amount}>{round(amount)}</td>
             </tr>
           )))}
       </tbody>

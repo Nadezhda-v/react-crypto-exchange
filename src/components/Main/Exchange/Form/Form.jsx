@@ -52,7 +52,13 @@ export const Form = () => {
   };
 
   const handleInputSum = (e) => {
-    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+    e.target.value = e.target.value.replace(/[^0-9.]/g, '');
+
+    const parts = e.target.value.split('.');
+
+    if (parts.length > 1 && parts[1].length > 2) {
+      e.target.value = parts[0] + '.' + parts[1].slice(0, 2);
+    }
   };
 
   return (
@@ -106,7 +112,7 @@ export const Form = () => {
               {...register('amount', {
                 required: 'Заполните поле',
                 pattern: {
-                  value: /^\d+$/,
+                  value: /^\d+(\.\d{1,2})?$/,
                   message: 'Неверный формат',
                 }
               })}
