@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Transaction from './Transaction';
 import Open from './Open';
 import { Link } from 'react-router-dom';
+import { round } from '../../../../utils/roundNumber';
 
 export const Account = ({ accountData }) => {
   const {
@@ -25,7 +26,7 @@ export const Account = ({ accountData }) => {
         to={`/crypto/account/${id}`}
       >
         <p className={style.id}>{id}</p>
-        <p className={style.balance}>{balance}</p>
+        <p className={style.balance}>{round(balance)}</p>
 
         <div className={style.info}>
           {dateOpen && <Open date={dateOpen} />}
