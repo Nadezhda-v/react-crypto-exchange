@@ -44,7 +44,7 @@ export const SortAccountList = ({ accounts, sortOrder }) => {
   });
 
   return (
-    <ul className={style.list}>
+    <ul id='list' className={style.list}>
       {sortedAccounts.map((data) => (
         <Account key={data.account} accountData={data} />
       ))}

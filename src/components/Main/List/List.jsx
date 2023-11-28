@@ -43,6 +43,7 @@ export const List = () => {
     <div className={style.container}>
       <div className={style.buttonWrapper}>
         <button
+          id='open-new-account'
           className={style.button}
           onClick={handleCreateAccount}
         >

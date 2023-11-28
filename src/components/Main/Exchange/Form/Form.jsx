@@ -11,7 +11,6 @@ import {
   allCurrenciesRequestAsync,
 } from '../../../../store/allCurrencies/allCurrenciesAction';
 
-
 export const Form = () => {
   const {
     register,
@@ -116,6 +115,7 @@ export const Form = () => {
                   message: 'Неверный формат',
                 }
               })}
+              id='sum-exchange'
               className={style.input}
               type='text'
               onInput={handleInputSum}
