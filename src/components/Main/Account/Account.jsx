@@ -37,6 +37,7 @@ export const Account = () => {
           <button
             className={style.button}
             onClick={handleBack}
+            id='back'
           >
             <BackIcon className={style.svg} />
             Назад

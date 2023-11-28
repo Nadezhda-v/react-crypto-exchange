@@ -1,4 +1,6 @@
 /* eslint-disable no-undef */
+import { round } from '../../src/utils/roundNumber';
+
 describe('Форма авторизации', () => {
   beforeEach(() => {
     cy.visit('http://crypto-swift.vercel.app');
@@ -44,8 +46,12 @@ describe('Форма авторизации', () => {
   });
 });
 
-describe('Список счетов и открытие нового', () => {
-  it('Счета', () => {
+describe('Форма перевода средств', () => {
+  let initialBalanceFrom;
+  let initialBalanceTo;
+  let amount;
+
+  beforeEach(() => {
     cy.visit('http://crypto-swift.vercel.app');
 
     cy.get('#login').type('developer');
@@ -53,20 +59,91 @@ describe('Список счетов и открытие нового', () => {
     cy.get('button[type="submit"]').click();
     cy.url().should('include', '/crypto');
 
-    cy.intercept('GET', '**/accounts').as('getAccounts');
-    cy.wait('@getAccounts');
+    // Начальный баланс счета с которого переводятся средства
+    cy.contains('#list li a', '24051911200915061003240821')
+      .parent()
+      .find('.Account_balance__1jt-C')
+      .invoke('text')
+      .then((text) => {
+        initialBalanceFrom = parseFloat(text.replace(/[^\d.]/g, ''));
+      });
 
-    // Список счетов
-    cy.get('#list li')
-      .should('have.length.above', 0);
+    // Извлекаем баланс счета, на который переводятся средства
+    cy.contains('#list li a', '74213041477477406320783754')
+      .parent()
+      .find('.Account_balance__1jt-C')
+      .invoke('text')
+      .then((text) => {
+        initialBalanceTo = parseFloat(text.replace(/[^\d.]/g, ''));
+      });
 
-    // Текущее количество счетов в списке
-    let initialCardCount;
-    cy.get('#list li').then(($listItems) => {
-      initialCardCount = $listItems.length;
-    });
+    // Переход на страницу с подробной информацией о счёте
+    cy.contains('#list li a', '24051911200915061003240821').click();
+    cy.url().should('include', '/crypto/account/24051911200915061003240821');
+  });
 
-    cy.get('#open-new-account').click();
-    cy.get('#list li').should('have.length', initialCardCount + 1);
+  it('Некорректный счет', () => {
+    cy.get('#to').type('12345678');
+    cy.get('button[type="submit"]').click();
+
+    cy.contains('Счет некорректный').should('exist');
+  });
+
+  it('Некорректная сумма перевода', () => {
+    cy.get('#amount').type('45.');
+    cy.get('button[type="submit"]').click();
+
+    cy.contains('Неверный формат').should('exist');
+  });
+
+  it('Проверка на пустые поля', () => {
+    cy.get('button[type="submit"]').click();
+
+    cy.contains('Заполните поле').should('exist');
+  });
+
+  it('Проверка на перевод суммы не превышающей баланс', () => {
+    const amountMoreThanBalance = initialBalanceFrom + 100;
+
+    cy.get('#to').type('74213041477477406320783754');
+    cy.get('#amount').type(amountMoreThanBalance);
+    cy.get('button[type="submit"]').click();
+
+    cy.contains('Недостаточно средств').should('exist');
+  });
+
+  it('Перевод средств', () => {
+    amount = round(initialBalanceFrom * 0.01);
+
+    cy.get('#to').type('74213041477477406320783754');
+    cy.get('#amount').type(amount);
+    cy.get('button[type="submit"]').click();
+
+    // Проверка баланса после перевода
+    initialBalanceFrom -= amount;
+    initialBalanceTo += amount;
+    let balanceFrom;
+    let balanceTo;
+
+    cy.get('#back').click();
+
+    cy.contains('#list li a', '24051911200915061003240821')
+      .parent()
+      .find('.Account_balance__1jt-C')
+      .invoke('text')
+      .then((text) => {
+        balanceFrom = parseFloat(text.replace(/[^\d.]/g, ''));
+      });
+
+    cy.contains('#list li a', '74213041477477406320783754')
+      .parent()
+      .find('.Account_balance__1jt-C')
+      .invoke('text')
+      .then((text) => {
+        balanceTo = parseFloat(text.replace(/[^\d.]/g, ''));
+      });
+
+    expect(initialBalanceFrom).to.eq(balanceFrom);
+    expect(initialBalanceTo).to.eq(balanceTo);
   });
 });
