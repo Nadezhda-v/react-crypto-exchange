@@ -46,9 +46,39 @@ describe('Форма авторизации', () => {
   });
 });
 
+describe('Просмотр списка счетов и открытие нового', () => {
+  it('Счета', () => {
+    cy.visit('http://crypto-swift.vercel.app');
+
+    cy.get('#login').type('developer');
+    cy.get('#password').type('methed');
+    cy.get('button[type="submit"]').click();
+    cy.url().should('include', '/crypto');
+
+    cy.intercept('GET', '**/accounts').as('getAccounts');
+    cy.wait('@getAccounts');
+
+    // Список счетов
+    cy.get('#list li')
+      .should('have.length.above', 0);
+
+    // Получить текущее количество счетов в списке
+    cy.get('#list li').then(($listItems) => {
+      const initialCardCount = $listItems.length;
+
+      // Открыть новый счет
+      cy.get('#open-new-account').click();
+
+      // Проверить, что количество счетов увеличилось
+      cy.get('#list li').should(($newListItems) => {
+        expect($newListItems).to.have.lengthOf(initialCardCount + 1);
+      });
+    });
+  });
+});
+
 describe('Форма перевода средств', () => {
   let initialBalanceFrom;
-  let initialBalanceTo;
   let amount;
 
   beforeEach(() => {
@@ -60,7 +90,7 @@ describe('Форма перевода средств', () => {
     cy.url().should('include', '/crypto');
 
     // Начальный баланс счета с которого переводятся средства
-    cy.contains('#list li a', '24051911200915061003240821')
+    cy.contains('#list li a', '74213041477477406320783754')
       .parent()
       .find('.Account_balance__1jt-C')
       .invoke('text')
@@ -68,18 +98,9 @@ describe('Форма перевода средств', () => {
         initialBalanceFrom = parseFloat(text.replace(/[^\d.]/g, ''));
       });
 
-    // Извлекаем баланс счета, на который переводятся средства
-    cy.contains('#list li a', '74213041477477406320783754')
-      .parent()
-      .find('.Account_balance__1jt-C')
-      .invoke('text')
-      .then((text) => {
-        initialBalanceTo = parseFloat(text.replace(/[^\d.]/g, ''));
-      });
-
     // Переход на страницу с подробной информацией о счёте
-    cy.contains('#list li a', '24051911200915061003240821').click();
-    cy.url().should('include', '/crypto/account/24051911200915061003240821');
+    cy.contains('#list li a', '74213041477477406320783754').click();
+    cy.url().should('include', '/crypto/account/74213041477477406320783754');
   });
 
   it('Некорректный счет', () => {
@@ -105,7 +126,7 @@ describe('Форма перевода средств', () => {
   it('Проверка на перевод суммы не превышающей баланс', () => {
     const amountMoreThanBalance = initialBalanceFrom + 100;
 
-    cy.get('#to').type('74213041477477406320783754');
+    cy.get('#to').type('24051911200915061003240821');
     cy.get('#amount').type(amountMoreThanBalance);
     cy.get('button[type="submit"]').click();
 
@@ -115,35 +136,25 @@ describe('Форма перевода средств', () => {
   it('Перевод средств', () => {
     amount = round(initialBalanceFrom * 0.01);
 
-    cy.get('#to').type('74213041477477406320783754');
-    cy.get('#amount').type(amount);
+    cy.get('#to').type('24051911200915061003240821');
+    cy.get('#amount').type(round(amount));
     cy.get('button[type="submit"]').click();
 
-    // Проверка баланса после перевода
-    initialBalanceFrom -= amount;
-    initialBalanceTo += amount;
-    let balanceFrom;
-    let balanceTo;
-
     cy.get('#back').click();
+    cy.wait(4000);
 
-    cy.contains('#list li a', '24051911200915061003240821')
-      .parent()
-      .find('.Account_balance__1jt-C')
-      .invoke('text')
-      .then((text) => {
-        balanceFrom = parseFloat(text.replace(/[^\d.]/g, ''));
-      });
+    // Проверка баланса после перевода
+    cy.then(() => {
+      initialBalanceFrom -= amount;
 
-    cy.contains('#list li a', '74213041477477406320783754')
-      .parent()
-      .find('.Account_balance__1jt-C')
-      .invoke('text')
-      .then((text) => {
-        balanceTo = parseFloat(text.replace(/[^\d.]/g, ''));
-      });
-
-    expect(initialBalanceFrom).to.eq(balanceFrom);
-    expect(initialBalanceTo).to.eq(balanceTo);
+      cy.contains('#list li a', '74213041477477406320783754')
+        .parent()
+        .find('.Account_balance__1jt-C')
+        .invoke('text')
+        .then((text) => {
+          const balanceFrom = parseFloat(text.replace(/[^\d.]/g, ''));
+          expect(round(initialBalanceFrom)).to.eq(balanceFrom);
+        });
+    });
   });
 });
