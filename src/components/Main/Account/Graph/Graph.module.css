@@ -3,8 +3,7 @@
   border-radius: 10px;
   margin-top: 50px;
   padding: 20px;
-  width: 580px;
-  max-height: 350px;
+  max-width: 100%;
 }
 
 .header {
@@ -45,6 +44,19 @@
   font-family: Nunito;
   font-size: 15px;
 }
+
+@media (max-width: 1380px) {
+  .container {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    max-width: 600px;
+  }
+}
+
 
 @media (max-width: 768px) {
   .container {

@@ -27,34 +27,38 @@ export const Account = () => {
   };
 
   return (
-    <div className={style.container}>
-      <div className={style.header}>
-        <div className={style.titleWrapper}>
-          <h2 className={style.title}>{`Счет №${id}`}</h2>
+    loading || !transactions ? (
+      <Preloader color='#FF29C3' />) : (
+      <div className={style.container}>
+        <div className={style.header}>
+          <div className={style.titleWrapper}>
+            <h2 className={style.title}>{`Счет №${id}`}</h2>
+          </div>
+
+          <div className={style.buttonWrapper}>
+            <button
+              className={style.button}
+              onClick={handleBack}
+              id='back'
+            >
+              <BackIcon className={style.svg} />
+              Назад
+            </button>
+          </div>
         </div>
 
-        <div className={style.buttonWrapper}>
-          <button
-            className={style.button}
-            onClick={handleBack}
-            id='back'
-          >
-            <BackIcon className={style.svg} />
-            Назад
-          </button>
-        </div>
-      </div>
-
-      {loading || !transactions ?
-        <Preloader color='#FF29C3' /> : (
-          <>
+        <div className={style.content}>
+          <div className={style.columnOne}>
             <Transactions transactions={transactions} id={id} />
+            <Form />
+          </div>
+
+          <div className={style.columnTwo}>
             <Graph transactions={transactions} id={id} />
             <Statistics transactions={transactions} id={id} />
-            <Form />
-          </>
-        )
-      }
-    </div>
+          </div>
+        </div>
+      </div>
+    )
   );
 };

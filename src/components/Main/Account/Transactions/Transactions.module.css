@@ -1,5 +1,5 @@
 .history {
-  max-width: 580px;
+  max-width: 100%;
 }
 
 .notHistory {
@@ -33,7 +33,7 @@
   background: rgba(255, 255, 255, 0.07);
   border-radius: 10px;
   padding: 20px;
-  width: 580px;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -93,9 +93,15 @@
   color: var(--green);
 }
 
+@media (max-width: 1380px) {
+  .amount {
+    padding-left: 10px;
+    padding-right: 5px;
+  }
+}
+
 @media (max-width: 768px) {
   .history {
-    margin-bottom: 30px;
     max-width: 100%;
   }
 

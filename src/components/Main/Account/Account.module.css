@@ -1,15 +1,18 @@
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   padding-top: 15px;
+}
+
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 70px;
+  row-gap: 20px;
 }
 
 .header {
   display: flex;
-  flex-basis: 100%;
   justify-content: space-between;
-  margin-bottom: 80px;
+  margin-bottom: 50px;
 }
 
 .button {
@@ -36,7 +39,21 @@
   margin-right: 8px;
 }
 
+@media (max-width: 1200px) {
+  .content {
+    grid-template-columns: 600px;
+  }
+
+  .columnTwo {
+    order: -1;
+  }
+}
+
 @media (max-width: 768px) {
+  .content {
+    grid-template-columns: 400px;
+  }
+
   .header {
     flex-direction: column-reverse;
     gap: 15px;
@@ -55,7 +72,7 @@
   }
 
   .button {
-    font-size: 16px;
+    font-size: 14px;
     padding: 10px 20px;
   }
 }
