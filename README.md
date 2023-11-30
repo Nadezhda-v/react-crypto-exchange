@@ -1,7 +1,7 @@
 <h1 align="center">Дипломный проект "Crypto Swift"</h1>
 
 <div align="center">
-    <img src="https://user-images.githubusercontent.com/109743172/285395376-aed55c56-7c8c-42a8-8c4c-12058273ad51.jpg" width="700" alt="demo page">
+    <img src="https://private-user-images.githubusercontent.com/109743172/286836192-4b987c1e-1a14-462a-a0c9-265ae6264929.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTEiLCJleHAiOjE3MDEzMjU4MTgsIm5iZiI6MTcwMTMyNTUxOCwicGF0aCI6Ii8xMDk3NDMxNzIvMjg2ODM2MTkyLTRiOTg3YzFlLTFhMTQtNDYyYS1hMGM5LTI2NWFlNjI2NDkyOS5qcGc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBSVdOSllBWDRDU1ZFSDUzQSUyRjIwMjMxMTMwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDIzMTEzMFQwNjI1MThaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT03ZTQ4ZTYwMGJmMjRkNDhiNjkwOTZiODNmNDQ2Zjk2YzYyMDBmYjdkY2IyNzIwZGQ1YTk5YWQxZWE1ZTI5MWYyJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.mFSIT9UelOq2O95EwngwrmkR51WOT8F05NMt46M84sg" width="700" alt="demo page">
 </div>
 
 <h4>:link: Ссылка на проект: https://crypto-swift.vercel.app</h4>
