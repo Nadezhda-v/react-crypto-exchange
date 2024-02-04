@@ -1,7 +1,7 @@
 <h1 align="center">Дипломный проект "Crypto Swift"</h1>
 
 <div align="center">
-    <img src="https://private-user-images.githubusercontent.com/109743172/297396569-e4c8ce0e-4fbe-4038-9879-b93d470a5c2d.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDU0OTkwODIsIm5iZiI6MTcwNTQ5ODc4MiwicGF0aCI6Ii8xMDk3NDMxNzIvMjk3Mzk2NTY5LWU0YzhjZTBlLTRmYmUtNDAzOC05ODc5LWI5M2Q0NzBhNWMyZC5qcGc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjQwMTE3JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI0MDExN1QxMzM5NDJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0wNmVkMDU1YzQ0YjJhNWIyZjVhOTI5NWY0MGY0MTFhNjNlOWU5ZjI5MDU2NWEzYTQ4ZWJiYzYzYjg2YmYxNzIzJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZhY3Rvcl9pZD0wJmtleV9pZD0wJnJlcG9faWQ9MCJ9.anKjuvA-bFoe5blnSRk4tfIQ-w36au_B1U0g3T_4iQw">
+  <img width="700" src="https://github.com/Nadezhda-v/react-crypto-exchange/assets/109743172/2d342cde-3e14-4304-ad9f-65383c5f2a5d" alt="main page">
 </div>
 
 <h4>:link: Ссылка на проект: https://crypto-swift.vercel.app</h4>
