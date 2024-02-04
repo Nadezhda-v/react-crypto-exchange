@@ -1,5 +1,5 @@
-const URL_API = 'https://honeysuckle-road-tuberose.glitch.me/';
-const WEBSOCKET_URL_API = 'wss://honeysuckle-road-tuberose.glitch.me/';
+const URL_API = 'https://truth-obvious-vault.glitch.me/';
+const WEBSOCKET_URL_API = 'wss://truth-obvious-vault.glitch.me/';
 
 export {
   URL_API,
