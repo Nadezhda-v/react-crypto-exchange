@@ -1,4 +1,4 @@
-<h1 align="center">Дипломный проект "Crypto Swift"</h1>
+<h1 align="center">"Crypto Swift"</h1>
 
 <div align="center">
   <img width="700" src="https://github.com/Nadezhda-v/react-crypto-exchange/assets/109743172/2d342cde-3e14-4304-ad9f-65383c5f2a5d" alt="main page">
@@ -7,7 +7,7 @@
 <h4>:link: Ссылка на проект: https://crypto-swift.vercel.app</h4>
 
 <h2>Описание проекта</h2>
-"Crypto Swift" - SPA приложение с авторизацией, представляет собой систему для хранения и управления криптовалютными активами.
+"Crypto Swift" - SPA приложение для хранения и управления криптовалютными активами.
 <br>
 
 <h2>Установка и запуск приложения в локальном репозитории</h2>
@@ -31,7 +31,7 @@
 6) Спиннеры загрузки
 
 <h2>Вход в аккаунт</h2>
-Войти в приложение можно под следующими данными:
+Войти в приложение можно со следующими кредами:
 
   - login: `developer`
   - password: `methed`
